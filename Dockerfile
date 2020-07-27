@@ -6,7 +6,7 @@ WORKDIR /go/src/github.com/AliyunContainerService/cluster-api-provider-alibabacl
 COPY pkg/    pkg/
 COPY cmd/    cmd/
 COPY test/  test/
-COPY vendor/ vendor/
+#COPY vendor/ vendor/
 
 # Build
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o ./machine-controller-manager github.com/AliyunContainerService/cluster-api-provider-alibabacloud/cmd/manager
