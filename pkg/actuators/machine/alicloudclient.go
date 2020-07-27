@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	aliCloud "github.com/AliyunContainerService/cluster-api-provider-alibabacloud/pkg/client"
-	"github.com/openshift/cluster-api-actuator-pkg/pkg/types"
 	machinev1beta1 "github.com/openshift/cluster-api/pkg/apis/machine/v1beta1"
 )
 

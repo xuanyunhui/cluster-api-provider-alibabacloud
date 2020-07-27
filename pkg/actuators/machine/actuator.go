@@ -16,8 +16,8 @@ package machine
 import (
 	"context"
 	"fmt"
-	"time"
 	"strings"
+	"time"
 
 	providerconfigv1 "github.com/AliyunContainerService/cluster-api-provider-alibabacloud/pkg/apis/alicloudprovider/v1alpha1"
 	aliClient "github.com/AliyunContainerService/cluster-api-provider-alibabacloud/pkg/client"
@@ -149,8 +149,10 @@ func (a *Actuator) updateStatus(machine *machinev1.Machine, instance *ecs.Instan
 		}
 		networkAddresses = append(networkAddresses, corev1.NodeAddress{
 			Type:    corev1.NodeInternalDNS,
-			Address: strings.Join([]string{"cn-beijing", instance.InstanceId}, "."),
+			Address: strings.Join([]string{instance.RegionId, instance.InstanceId}, "."),
 		})
+
+		machine.Labels[machinecontroller.MachineRegionLabelName] = machineProviderConfig.RegionId
 	}
 	glog.Infof("%s: finished calculating Alicloud status", machine.Name)
 

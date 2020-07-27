@@ -65,10 +65,28 @@ func createInstance(machine *machinev1.Machine, machineProviderConfig *providerc
 	if machineProviderConfig.InstanceChargeType != "" {
 		createInstanceRequest.InstanceChargeType = machineProviderConfig.InstanceChargeType
 	}
+	//No effect when instanceChargeType is not PrePaid
+	if machineProviderConfig.Period != 0 {
+		createInstanceRequest.Period = machineProviderConfig.Period
+	} 
+	if machineProviderConfig.PeriodUnit != "" {
+		createInstanceRequest.PeriodUnit = machineProviderConfig.PeriodUnit
+	}
+	if machineProviderConfig.AutoRenew and machineProviderConfig.AutoRenewPeriod != 0 {
+		createInstanceRequest.AutoRenew = machineProviderConfig.AutoRenew
+		createInstanceRequest.AutoRenewPeriod = machineProviderConfig.AutoRenewPeriod
+	}
 
-	//spotStrategy
+	//spotStrategy SpotDuration SpotPriceLimit
 	if machineProviderConfig.SpotStrategy != "" {
 		createInstanceRequest.SpotStrategy = machineProviderConfig.SpotStrategy
+	}
+	if machineProviderConfig.SpotDuration != 0 {
+		createInstanceRequest.SpotDuration = machineProviderConfig.SpotDuration
+	}
+	// SpotWithPriceLimit no effect when SpotStrategy is not SpotWithPriceLimit 
+	if machineProviderConfig.SpotWithPriceLimit != 0.0 {
+		machineProviderConfig.SpotWithPriceLimit = machineProviderConfig.SpotWithPriceLimit
 	}
 
 	clusterID, ok := getClusterID(machine)
