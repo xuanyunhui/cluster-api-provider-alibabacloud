@@ -14,7 +14,7 @@ import (
 	providerconfigv1 "github.com/AliyunContainerService/cluster-api-provider-alibabacloud/pkg/apis/alicloudprovider/v1alpha1"
 	"github.com/AliyunContainerService/cluster-api-provider-alibabacloud/test/utils"
 	clusterv1 "github.com/openshift/cluster-api/pkg/apis/cluster/v1alpha1"
-	machinev1 "github.com/openshift/cluster-api/pkg/apis/machine/v1beta1"
+	machinev1 "http://github.com/openshift/machine-api-operator/pkg/apis/machine/v1beta1"
 	machinecontroller "github.com/openshift/cluster-api/pkg/controller/machine"
 )
 
